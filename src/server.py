@@ -80,7 +80,7 @@ def deal_data(conn, addr):
 def recon_pic(filename) -> str:
     model = torch.hub.load('pytorch/vision:v0.10.0', 'googlenet', pretrained=True)
     model.eval()
-    img = Image.open(filename)
+    img = Image.open(filename).convert('RGB')
     preprocess = transforms.Compose([
         transforms.Resize(256),
         transforms.CenterCrop(224),
