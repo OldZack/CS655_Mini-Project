@@ -39,4 +39,4 @@ def request_img_recog(host, port, file_path) -> str:
     s.close()
     return type_recog
 
-# request_img_recog("pcvm2-16.instageni.uvm.edu", 12345, "dog.jpg")
+request_img_recog("pcvm2-16.instageni.uvm.edu", 12345, "dog.jpg")
