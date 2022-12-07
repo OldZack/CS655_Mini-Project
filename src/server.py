@@ -5,7 +5,6 @@ import sys
 import threading
 import torch
 from torchvision import transforms
-import wget
 import os
 from PIL import Image
 
@@ -13,17 +12,16 @@ def socket_service():
     """Start Socket service"""
     try:
         s = socket.socket()
-        ip = socket.gethostname()
+        host = socket.gethostname()
         port = 12345
-        s.bind((ip, port))
+        s.bind((host, port))
         s.listen(5)
     except socket.error as msg:
         print(msg)
         sys.exit(1)
-    print('Wait connection')
+    print('Wait connection...')
     while True:
         conn, addr = s.accept()
-        print("connected")
         t = threading.Thread(target=deal_data, args=(conn, addr))
         t.start()
 
@@ -69,13 +67,14 @@ def deal_data(conn, addr):
     filename.close()
 
     # recognize image and send back type
-    type_recog = "RECOG"+" "+recon_pic(name)
+    type_recog = "RECOG"+"\n"+recon_pic(name)
 
     try:
         conn.send(bytes(type_recog, encoding="utf-8"))
     except:
         conn.close()
     conn.close()
+    print("=============== Connection Closed ===============")
 
 
 def recon_pic(filename) -> str:
@@ -97,7 +96,6 @@ def recon_pic(filename) -> str:
     with torch.no_grad():
         output = model(input_batch)
     probabilities = torch.nn.functional.softmax(output[0], dim=0)
-    # wget.download("https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt", "class.txt")
     # Read the categories
     with open("class.txt", "r") as f:
         categories = [s.strip() for s in f.readlines()]
@@ -111,7 +109,3 @@ def recon_pic(filename) -> str:
 
 if __name__ == '__main__':
     socket_service()
-
-
-# 访问 https://www.jetbrains.com/help/pycharm/ 获取 PyCharm 帮助
-
