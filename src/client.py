@@ -3,12 +3,12 @@
 
 import socket
  
-def request_img_recog(ip, port, file_path) -> str:
+def request_img_recog( port, file_path) -> str:
     """Create Socket connection to request recognition for img file"""
     
     # Connection
     s = socket.socket()                  
-    s.connect((ip, port))
+    s.connect((socket.gethostname(), port))
 
     # Read binary file
     with open(file_path, "rb") as f:
@@ -39,4 +39,4 @@ def request_img_recog(ip, port, file_path) -> str:
     s.close()
     return type_recog
 
-request_img_recog(socket.gethostname(), 12345, "dog.jpg")
+# request_img_recog(socket.gethostname(), 12345, "dog.jpg")
