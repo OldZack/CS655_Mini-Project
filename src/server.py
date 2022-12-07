@@ -47,8 +47,11 @@ def deal_data(conn, addr):
             # Receive data
             else:
                 if length == -1:
-                    print("Drop invalid message since no known file length")
-                    continue
+                    print("Receive invalid message since no known file length")
+                    print("Connection rejected, please retry")
+                    conn.close()
+                    print("=============== Connection Closed ===============")
+                    return
                 filename.write(data)
                 buffered += len(data)
                 if buffered == length:
@@ -57,8 +60,11 @@ def deal_data(conn, addr):
         except:
             # Receive data
             if length == -1:
-                print("Drop invalid message since no known file length")
-                continue
+                print("Receive invalid message since no known file length")
+                print("Connection rejected, please retry")
+                conn.close()
+                print("=============== Connection Closed ===============")
+                return
             filename.write(data)
             buffered += len(data)
             if buffered == length:
