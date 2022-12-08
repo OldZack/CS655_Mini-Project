@@ -15,3 +15,5 @@ This is the CS655 mini project that takes a image as input and displays its cate
         sudo bash server.sh
       ```
 4. Open our web interface in the browser with following url: http://72.36.65.74:5000/
+5. Click "Choose File" to choose any .jpg or .png image, then click "Upload".
+6. The recognition result and RTT will be displayed on the screen.
