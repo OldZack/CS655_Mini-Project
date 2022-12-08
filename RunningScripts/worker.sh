@@ -6,4 +6,4 @@ pip3 install torch==1.10.0+cpu torchvision==0.11.1+cpu torchaudio==0.10.0+cpu -f
 pip3 install requests
 rm -rf CS655_Mini-Project
 git clone https://github.com/OldZack/CS655_Mini-Project.git
-python3 CS655_Mini-Project/Server/worker.py
+python3 CS655_Mini-Project/Worker/worker.py
