@@ -29,7 +29,7 @@ def socket_service():
 def deal_data(conn, addr):
     """Running file transfer protocol and recognize image received"""
     print('Accept new connection from {0}'.format(addr))
-    name = 'test_img.jpg'
+    name = str(threading.get_ident())+'test_img.jpg'
     filename = open(name, 'wb')
     length = -1
     buffered = 0
