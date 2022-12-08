@@ -21,3 +21,4 @@ This is the CS655 mini project that takes a image as input and displays its cate
 
 ## Team Members
 Wanzhi Wang (U72807790)
+Haoran Yang (U67400490)
